@@ -1,59 +1,37 @@
-import {Text, View, StyleSheet} from "react-native";
+import {Text, View, Pressable} from "react-native";
 import {formatDate} from "../util/dateUtils";
+import {FontAwesome} from "@expo/vector-icons";
+import {useState} from "react";
+import {bridgeStyles as styles} from "../styles/bridgeStyles";
 
 export const Bridge = ({bridge}) => {
+    const [isFave, setIsFave] = useState(false)
 
-    const styles = StyleSheet.create({
-        bridge: {
-            marginVertical: 2,
-            marginHorizontal: 2,
-            paddingVertical: 2,
-            paddingHorizontal: 8,
-            fontWeight: 'bold',
-            minHeight: 100
-        },
-        border: {
-            borderWidth: 2,
-            borderRadius: 3,
-            borderColor: 'darkgrey'
-        },
-        container: {
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'space-between',
-        },
-        infoContainer: {
-            flex: 1,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-        },
-        title: {
-            fontSize: 34,
-        },
-        status: {
-            fontSize: 26,
-            color: bridge?.status === 'Open' ? 'red' : 'green'
-        }
-    });
-
+    const handleFavoritePressed = () => {
+        setIsFave(!isFave);
+    }
     return (
-        <View style={[styles.bridge, styles.border]}>
+        <View style={[styles.container, styles.bridge, styles.border]}>
             <View style={styles.infoContainer}>
                 <Text style={[styles.title]}>{bridge.name}</Text>
-                <Text style={[styles.status]}>
+                <Pressable style={[styles.faveButton]} onPress={handleFavoritePressed}>
+                    <FontAwesome name={`star${isFave ? '' : '-o'}`} size={30} color="#ffd700"/>
+                </Pressable>
+            </View>
+            <View style={[styles.statusContainer]}>
+                <Text style={[styles.status, {color: bridge?.status === 'Open' ? 'red' : 'green',}]}>
                     {
                         bridge.status === 'Open' ? 'Up' : 'Down'
                     }
                 </Text>
+                {
+                    bridge.lastOpen && bridge.lastClosed &&
+                    <View>
+                        <Text>Last Open: {formatDate(bridge.lastOpen)}</Text>
+                        <Text>Last Closed: {formatDate(bridge.lastClosed)}</Text>
+                    </View>
+                }
             </View>
-            {
-                bridge.lastOpen && bridge.lastClosed &&
-                <View>
-                    <Text>Last Open: {formatDate(bridge.lastOpen)}</Text>
-                    <Text>Last Closed: {formatDate(bridge.lastClosed)}</Text>
-                </View>
-            }
         </View>
     )
 }
