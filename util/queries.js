@@ -9,6 +9,7 @@ const getBridges = async () => {
 export function useBridges() {
     return useQuery({
         queryKey: ['bridges'],
-        queryFn: getBridges
+        queryFn: getBridges,
+        refetchInterval: 20000, // TODO: Parameterize
     });
 }
