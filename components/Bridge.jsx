@@ -14,7 +14,7 @@ export const Bridge = ({bridge}) => {
     useEffect(() => {
         setToken(localStorage.getItem('token'));
         setIsFave(user.favorites.includes(bridge._id));
-    }, []);
+    }, [bridge]);
     const handleFavoritePressed = async () => {
         let updatedFavorites = [...user.favorites];
         if (isFave) {
