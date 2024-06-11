@@ -7,7 +7,8 @@ export const bridgeStyles = StyleSheet.create({
         paddingVertical: 2,
         paddingHorizontal: 8,
         fontWeight: 'bold',
-        minHeight: 100
+        minHeight: 120,
+        maxHeight: 120
     },
     border: {
         borderWidth: 2,

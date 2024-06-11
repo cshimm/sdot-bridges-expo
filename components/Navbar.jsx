@@ -32,7 +32,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: 'lightgrey',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        minHeight: 50,
+        maxHeight: 50
     },
     loginButton: {
         padding: 20
