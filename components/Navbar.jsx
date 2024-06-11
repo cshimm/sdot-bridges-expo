@@ -1,10 +1,26 @@
-import {Button, View, StyleSheet} from "react-native";
+import {Button, View, StyleSheet, Text} from "react-native";
+import {Link} from "expo-router";
+import {getCurrentUserId} from "../util/userUtils";
+import {useUserById} from "../util/queries";
+import {useEffect, useState} from "react";
 
 export const Navbar = () => {
+    const [token, setToken] = useState();
+    const {data} = useUserById(getCurrentUserId());
+
+    useEffect(() => {
+        setToken(localStorage.getItem('token'))
+    }, []);
     return (
         <View style={[styles.container]}>
+            {
+                token && data &&
+                <Text>Welcome {data.firstName}</Text>
+            }
             <View style={styles.loginButton}>
-                <Button title={"login"}/>
+                <Link href={{pathname: token ? 'logout' : 'login'}}>
+                    <Button title={token ? 'logout' : 'login'}/>
+                </Link>
             </View>
         </View>
     );
@@ -16,7 +32,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: 'lightgrey',
-        justifyContent:'flex-end'
+        justifyContent: 'flex-end'
     },
     loginButton: {
         padding: 20

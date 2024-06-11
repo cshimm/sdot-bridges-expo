@@ -14,9 +14,12 @@ export const Bridge = ({bridge}) => {
         <View style={[styles.container, styles.bridge, styles.border]}>
             <View style={styles.infoContainer}>
                 <Text style={[styles.title]}>{bridge.name}</Text>
-                <Pressable style={[styles.faveButton]} onPress={handleFavoritePressed}>
-                    <FontAwesome name={`star${isFave ? '' : '-o'}`} size={30} color="#ffd700"/>
-                </Pressable>
+                {
+
+                    <Pressable style={[styles.faveButton]} onPress={handleFavoritePressed}>
+                        <FontAwesome name={`star${isFave ? '' : '-o'}`} size={30} color="#ffd700"/>
+                    </Pressable>
+                }
             </View>
             <View style={[styles.statusContainer]}>
                 <Text style={[styles.status, {color: bridge?.status === 'Open' ? 'red' : 'green',}]}>

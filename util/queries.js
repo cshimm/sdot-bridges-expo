@@ -13,3 +13,14 @@ export function useBridges() {
         refetchInterval: 20000, // TODO: Parameterize
     });
 }
+const getUserFromId = async (id) => {
+    const response = await fetch(`${url}/users/find/${id}`);
+    return response.json();
+
+}
+export function useUserById(id){
+    return useQuery({
+        queryKey: ['userId', id],
+        queryFn:async () => getUserFromId(id)
+    })
+}
