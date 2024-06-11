@@ -18,14 +18,14 @@ export const Navbar = () => {
                 <FontAwesome6 size={40} color={'black'} name={'bridge'}/>
             </View>
             <Text style={[styles.title]}>Is the bridge up?</Text>
-            {
-                token && data &&
-                <Text>Welcome {data.firstName}</Text>
-            }
             <View style={styles.loginButton}>
                 <Link href={{pathname: token ? 'logout' : 'login'}}>
                     <Button title={token ? 'logout' : 'login'}/>
                 </Link>
+                {
+                    token && data &&
+                    <Text>Welcome {data.firstName}</Text>
+                }
             </View>
         </View>
     );
@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'lightgrey',
         justifyContent: 'space-between',
-        minHeight: 50,
-        maxHeight: 50
+        minHeight: 70,
+        maxHeight: 70
     },
     loginButton: {
         padding: 20
