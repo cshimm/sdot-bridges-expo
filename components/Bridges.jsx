@@ -6,7 +6,6 @@ import {useBridges} from "../util/queries";
 export const Bridges = () => {
     const [bridges, setBridges] = useState([]);
     const {data} = useBridges();
-
     const styles = StyleSheet.create({
         container: {
             flexGrow: 1,
