@@ -3,6 +3,7 @@ import {Link} from "expo-router";
 import {getCurrentUserId} from "../util/userUtils";
 import {useUserById} from "../util/queries";
 import {useEffect, useState} from "react";
+import {FontAwesome6} from '@expo/vector-icons';
 
 export const Navbar = () => {
     const [token, setToken] = useState();
@@ -13,6 +14,10 @@ export const Navbar = () => {
     }, []);
     return (
         <View style={[styles.container]}>
+            <View style={{padding: 20}}>
+                <FontAwesome6 size={40} color={'black'} name={'bridge'}/>
+            </View>
+            <Text style={[styles.title]}>Is the bridge up?</Text>
             {
                 token && data &&
                 <Text>Welcome {data.firstName}</Text>
@@ -32,11 +37,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: 'lightgrey',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
         minHeight: 50,
         maxHeight: 50
     },
     loginButton: {
         padding: 20
     },
+    title: {
+        fontSize: 24,
+        justifyItems: 'center'
+    }
 });
