@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {Navbar} from "../components/Navbar";
 import {Bridges} from "../components/Bridges";
