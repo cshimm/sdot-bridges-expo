@@ -1,11 +1,16 @@
 import {Text, View, Pressable} from "react-native";
 import {formatDate} from "../util/dateUtils";
 import {FontAwesome} from "@expo/vector-icons";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {bridgeStyles as styles} from "../styles/bridgeStyles";
 
 export const Bridge = ({bridge}) => {
+    const [token, setToken] = useState();
     const [isFave, setIsFave] = useState(false)
+
+    useEffect(() => {
+        setToken(localStorage.getItem('token'));
+    }, []);
 
     const handleFavoritePressed = () => {
         setIsFave(!isFave);
@@ -15,7 +20,7 @@ export const Bridge = ({bridge}) => {
             <View style={styles.infoContainer}>
                 <Text style={[styles.title]}>{bridge.name}</Text>
                 {
-
+                    token &&
                     <Pressable style={[styles.faveButton]} onPress={handleFavoritePressed}>
                         <FontAwesome name={`star${isFave ? '' : '-o'}`} size={30} color="#ffd700"/>
                     </Pressable>
