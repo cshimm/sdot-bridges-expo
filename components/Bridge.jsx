@@ -13,7 +13,8 @@ export const Bridge = ({bridge}) => {
     const {data: user, refetch} = useUserById(getCurrentUserId());
     useEffect(() => {
         setToken(localStorage.getItem('token'));
-        setIsFave(user.favorites.includes(bridge._id));
+        if (user && user.favorites)
+            setIsFave(user.favorites.includes(bridge._id));
     }, [bridge]);
     const handleFavoritePressed = async () => {
         let updatedFavorites = [...user.favorites];

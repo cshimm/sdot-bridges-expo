@@ -46,13 +46,16 @@ export const Bridges = () => {
     }
     return (
         <ScrollView contentContainerStyle={[styles.container]}>
-            <View style={[styles.checkboxContainer]}>
-                <Text>Toggle Favorites:</Text>
-                <Checkbox
-                    status={favesToggle ? 'checked' : 'unchecked'}
-                    onPress={handleCheckboxChecked}
-                />
-            </View>
+            {
+                user && user.favorites &&
+                <View style={[styles.checkboxContainer]}>
+                    <Text>Toggle Favorites:</Text>
+                    <Checkbox
+                        status={favesToggle ? 'checked' : 'unchecked'}
+                        onPress={handleCheckboxChecked}
+                    />
+                </View>
+            }
             {
                 bridges.map((bridge, index) => <Bridge key={index} bridge={bridge}/>)
             }
